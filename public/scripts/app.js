@@ -134,7 +134,7 @@ function LoginController (Account) {
       .then(function(){
          vm.new_user = {};
          $window.location.href = '/profile.html';
-         // TODO #5: redirect to '/profile'
+         // TODO #5: redirect to '/profile' CURRENT_TODO
       })
   };
 }
