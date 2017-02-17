@@ -7,7 +7,7 @@ var express = require('express'),
     auth = require('./resources/auth');
 
 // require and load dotenv
-require('dotenv').load();
+require('dotenv').load(); //the super secret token is stored in the .env
 
 // configure bodyParser (for receiving form data)
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +20,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'hbs');
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost/angular_auth');
+mongoose.connect('mongodb://localhost/angular_auth'); //mongod connects to angular auth
 
 // require User and Post models
 var User = require('./models/user');
@@ -88,11 +88,12 @@ app.post('/auth/signup', function (req, res) {
 });
 
 app.post('/auth/login', function (req, res) {
-  User.findOne({ email: req.body.email }, '+password', function (err, user) {
+  User.findOne({ email: req.body.email }, '+password', function (err, user) { //WHY +PASSWORD AS STRING???
     if (!user) {
       return res.status(401).send({ message: 'Invalid email or password.' });
     }
     user.comparePassword(req.body.password, function (err, isMatch) {
+      console.log('this is where the +password is, and the user is: ' user);
       if (!isMatch) {
         return res.status(401).send({ message: 'Invalid email or password.' });
       }

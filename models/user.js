@@ -21,6 +21,7 @@ userSchema.pre('save', function (next) {
   }
 
   // encrypt password
+  // what is next()?
   var user = this;
   if (!user.isModified('password')) {
     return next();

@@ -1,5 +1,5 @@
 var jwt = require('jwt-simple'),
-    moment = require('moment');
+    moment = require('moment'); //display dates in js
 
 module.exports = {
   /*
@@ -19,10 +19,12 @@ module.exports = {
     catch (err) {
       return res.status(401).send({ message: err.message });
     }
+    // if the payload expiration date is less than or equal to unix time converted into js real time
     if (payload.exp <= moment().unix()) {
       return res.status(401).send({ message: 'Token has expired.' });
     }
-    req.user = payload.sub;
+    req.user = payload.sub; //WHAT IS THIS?!?!?!
+    console.log('LOOK HERE!!!!!!!!! the payload is: ' payload, 'the subject is: ' payload.sub);
     next();
   },
 
@@ -32,8 +34,8 @@ module.exports = {
   createJWT: function (user) {
     var payload = {
       sub: user._id,
-      iat: moment().unix(),
-      exp: moment().add(14, 'days').unix()
+      iat: moment().unix(), //issued at
+      exp: moment().add(14, 'days').unix() //creates later expiration date
     };
     return jwt.encode(payload, process.env.TOKEN_SECRET);
   }
