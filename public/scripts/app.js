@@ -30,7 +30,7 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
   // for any unmatched URL redirect to /
   $urlRouterProvider.otherwise("/");
 
-  $stateProvider
+  $stateProvider //adds functionality to test if logged in
     .state('home', {
       url: '/',
       templateUrl: 'templates/home.html',
@@ -100,6 +100,7 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
 // CONTROLLERS //
 /////////////////
 
+//Account is a service defined below with methods re login, logout, account verification, etc.
 MainController.$inject = ["Account"]; // minification protection
 function MainController (Account) {
   var vm = this;

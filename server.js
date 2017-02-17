@@ -93,7 +93,7 @@ app.post('/auth/login', function (req, res) {
       return res.status(401).send({ message: 'Invalid email or password.' });
     }
     user.comparePassword(req.body.password, function (err, isMatch) {
-      console.log('this is where the +password is, and the user is: ' user);
+      console.log('this is where the +password is, and the user is: ', user);
       if (!isMatch) {
         return res.status(401).send({ message: 'Invalid email or password.' });
       }

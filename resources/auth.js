@@ -24,7 +24,7 @@ module.exports = {
       return res.status(401).send({ message: 'Token has expired.' });
     }
     req.user = payload.sub; //WHAT IS THIS?!?!?!
-    console.log('LOOK HERE!!!!!!!!! the payload is: ' payload, 'the subject is: ' payload.sub);
+    console.log('LOOK HERE!!!!!!!!! the payload is: ', payload, 'the subject is: ', payload.sub);
     next();
   },
 
